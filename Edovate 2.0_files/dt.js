@@ -9,7 +9,7 @@ var DtModuleCourses = (function () {
       {
         'course_name': 'English Language Arts 1',
         'school_name': 'Bridgeway 2',
-        'teacher': 'Cortney Bowen',
+        'teacher': 'ACortney Bowen',
         'teacher_assistant': 'Stehanie Mills',
         'grade_level': 'MS',
         'start_date': '04/01/2021',
@@ -352,7 +352,7 @@ var DtModuleCourses = (function () {
     select: {
       style: 'single',
       toggleable: false
-    },
+    }, 
     altEditor: true,
     buttons: [],
     'createdRow': function( row, data, dataIndex){
@@ -386,7 +386,6 @@ var DtModuleCourses = (function () {
     
     // Edit
     $(document).on('click', "[id^='course-sections'] tbody tr", function () {
-      console.log($(this))
       if ($(this).hasClass('group')) {
         return false;
       }
@@ -419,6 +418,17 @@ var DtModuleCourses = (function () {
       groupColumn = $('[name="group"]:checked').val();
         groupRows(table);
     });
+
+    // Order by the grouping
+    DOM.$dt.on( 'click', 'tbody tr.group', function () {
+      var currentOrder = table.order()[0];
+      if ( currentOrder[0] === groupColumn && currentOrder[1] === 'asc' ) {
+          table.order( [ groupColumn, 'desc' ] ).draw();
+      }
+      else {
+          table.order( [ groupColumn, 'asc' ] ).draw();
+      }
+  } );
 
     // Update
     $(document).on('click', "[id^='editRowBtn']", 'tr', function () {
