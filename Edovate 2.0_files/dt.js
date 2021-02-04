@@ -349,6 +349,7 @@ var DtModuleCourses = (function () {
         'targets': 13,
       },
     ],
+    colReorder: true,
     select: {
       style: 'single',
       toggleable: false
@@ -370,10 +371,12 @@ var DtModuleCourses = (function () {
       $toolbar.after('<select class="mr-1"><option>W/TA</option></select>');
       $toolbar.after('<select class="mr-1"><option>All Schools</option></select>');
       $toolbar.after('<select class="mr-1"><option>2021-2022</option></select>');
+
     },
     'drawCallback': function ( settings ) {
       var api = this.api();
       groupRows(api);
+      $('#course-sections_wrapper tr.group td').append('<small> (Click to sort by group)</small>');
     }
   }
 
@@ -417,6 +420,11 @@ var DtModuleCourses = (function () {
     $(document).on('change', '[name="group"]', function() {
       groupColumn = $('[name="group"]:checked').val();
         groupRows(table);
+        var colOrder = [0,1,2,3,4,5,6,7,8,9,10,11,12,13];
+        colOrder = colOrder.filter(val => val !== parseInt(groupColumn));
+        colOrder.unshift(parseInt(groupColumn));
+        console.log(colOrder)
+        table.colReorder.order(colOrder);
     });
 
     // Order by the grouping
@@ -436,6 +444,16 @@ var DtModuleCourses = (function () {
     });
   }
 
+  function removeFromArray(arr) {
+    var what, a = arguments, L = a.length, ax;
+    while (L > 1 && arr.length) {
+        what = a[--L];
+        while ((ax= arr.indexOf(what)) !== -1) {
+            arr.splice(ax, 1);
+        }
+    }
+    return arr;
+}
   
   function groupRows(api) {
     DOM.$dt.find('.group').remove();
