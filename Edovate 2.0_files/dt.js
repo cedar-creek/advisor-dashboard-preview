@@ -424,7 +424,7 @@ var DtModuleCourses = (function () {
         colOrder = colOrder.filter(val => val !== parseInt(groupColumn));
         colOrder.unshift(parseInt(groupColumn));
         console.log(colOrder)
-        table.colReorder.order(colOrder);
+        table.colReorder.order(colOrder, true);
     });
 
     // Order by the grouping
