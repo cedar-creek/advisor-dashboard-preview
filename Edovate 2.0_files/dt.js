@@ -376,7 +376,7 @@ var DtModuleCourses = (function () {
     'drawCallback': function ( settings ) {
       var api = this.api();
       groupRows(api);
-      $('#course-sections_wrapper tr.group td').append('<small> (Click to sort by group)</small>');
+      addSortingMsg();
     }
   }
 
@@ -423,8 +423,8 @@ var DtModuleCourses = (function () {
         var colOrder = [0,1,2,3,4,5,6,7,8,9,10,11,12,13];
         colOrder = colOrder.filter(val => val !== parseInt(groupColumn));
         colOrder.unshift(parseInt(groupColumn));
-        console.log(colOrder)
         table.colReorder.order(colOrder, true);
+        addSortingMsg();
     });
 
     // Order by the grouping
@@ -444,16 +444,9 @@ var DtModuleCourses = (function () {
     });
   }
 
-  function removeFromArray(arr) {
-    var what, a = arguments, L = a.length, ax;
-    while (L > 1 && arr.length) {
-        what = a[--L];
-        while ((ax= arr.indexOf(what)) !== -1) {
-            arr.splice(ax, 1);
-        }
-    }
-    return arr;
-}
+  function addSortingMsg() {
+    $('#course-sections_wrapper tr.group td').append('<small class="font-weight-normal"> (Click to sort by group)</small>');
+  }
   
   function groupRows(api) {
     DOM.$dt.find('.group').remove();

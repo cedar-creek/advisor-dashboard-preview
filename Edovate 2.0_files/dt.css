@@ -105,3 +105,6 @@ table.dataTable tbody tr.group {
 table.dataTable tbody tr.group td {
     padding: 6px 20px;
 }
+.font-weight-normal {
+    font-weight: normal;
+}
