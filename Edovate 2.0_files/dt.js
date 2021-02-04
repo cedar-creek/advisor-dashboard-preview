@@ -230,6 +230,7 @@ var DtModuleCourses = (function () {
     },
     'initComplete': function (settings, json) {
       var $toolbar = $('#course-sections_wrapper div.toolbar');
+      $('#course-sections_wrapper').prepend('<div class="group-by">Group By <input id="course" name="group" type="radio"><label for="course">Course</label><input id="school" type="radio" name="group"><label for="school">School</label><input id="teacher" type="radio" name="group"><label for="teacher">Teacher</label></div>');
       
       $toolbar.after('<select class="mr-1"><option>Term</option></select>');
       $toolbar.after('<select class="mr-1"><option>Scheldue</option></select>');
@@ -246,6 +247,7 @@ var DtModuleCourses = (function () {
 
   function initDT() {
     var table = DOM.$dt.DataTable(dtConfOnboaardingStudents);
+    
      // Edit
      $(document).on('click', "[id^='course-sections'] tbody ", 'tr', function () {
       var tableID = $(this).closest('table').attr('id');    // id of the table
