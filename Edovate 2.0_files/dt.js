@@ -2,14 +2,13 @@ var DtModuleCourses = (function () {
   'use strict';
 
   var DOM = {};
-
-  
+  var groupColumn = 0;
 
   var dataSet = {
     'data': [
       {
         'course_name': 'English Language Arts 1',
-        'school_name': 'Bridgeway',
+        'school_name': 'Bridgeway 2',
         'teacher': 'Cortney Bowen',
         'teacher_assistant': 'Stehanie Mills',
         'grade_level': 'MS',
@@ -19,14 +18,13 @@ var DtModuleCourses = (function () {
         'day': 'Wednesday',
         'time': '1:15 PM - 2:15 PM',
         'section_id': 'LLS55803MEET-2021-1',
-        'status_enrolled': 'active',
+        'status_enrolled': 'inactive',
         'avail_seats': 69,
-        'total_seats': 69,
         'zoom_id': '00542469756',
       },
       {
-        'course_name': 'English Language Arts 1',
-        'school_name': 'Bridgeway',
+        'course_name': 'AEnglish Language Arts 2',
+        'school_name': 'Bridgeway 2',
         'teacher': 'Angela Schmoyer',
         'teacher_assistant': 'Stehanie Mills',
         'grade_level': 'MS',
@@ -38,12 +36,11 @@ var DtModuleCourses = (function () {
         'section_id': 'LLS55803MEET-2021-1',
         'status_enrolled': 'active',
         'avail_seats': 69,
-        'total_seats': 69,
         'zoom_id': '00542469756',
       },
       {
-        'course_name': 'English Language Arts 1',
-        'school_name': 'Bridgeway',
+        'course_name': 'English Language Arts 3',
+        'school_name': 'Bridgeway 2',
         'teacher': 'Kristy Rhoads',
         'teacher_assistant': 'Stehanie Mills',
         'grade_level': 'MS',
@@ -55,12 +52,11 @@ var DtModuleCourses = (function () {
         'section_id': 'LLS55803MEET-2021-1',
         'status_enrolled': 'active',
         'avail_seats': 69,
-        'total_seats': 69,
         'zoom_id': '00542469756',
       },
       {
-        'course_name': 'English Language Arts 1',
-        'school_name': 'Bridgeway',
+        'course_name': 'English Language Arts 2',
+        'school_name': 'Bridgeway 3',
         'teacher': 'Jaime Goulet',
         'teacher_assistant': 'Stehanie Mills',
         'grade_level': 'MS',
@@ -72,7 +68,86 @@ var DtModuleCourses = (function () {
         'section_id': 'LLS55803MEET-2021-1',
         'status_enrolled': 'active',
         'avail_seats': 69,
-        'total_seats': 69,
+        'zoom_id': '00542469756',
+      },
+      {
+        'course_name': 'English Language Arts 5',
+        'school_name': 'Bridgeway 2',
+        'teacher': 'Cortney Bowen',
+        'teacher_assistant': 'Ashely Rose',
+        'grade_level': 'MS',
+        'start_date': '04/01/2021',
+        'end_date': '04/01/2021',
+        'section_name': 'CH-Language Arts 8008',
+        'day': 'Wednesday',
+        'time': '1:15 PM - 2:15 PM',
+        'section_id': 'LLS55803MEET-2021-1',
+        'status_enrolled': 'active',
+        'avail_seats': 69,
+        'zoom_id': '00542469756',
+      },
+      {
+        'course_name': 'English Language Arts 1',
+        'school_name': 'Bridgeway 2',
+        'teacher': 'Cortney Bowen',
+        'teacher_assistant': 'Ashely Rose',
+        'grade_level': 'MS',
+        'start_date': '04/01/2021',
+        'end_date': '04/01/2021',
+        'section_name': 'CH-Language Arts 8008',
+        'day': 'Wednesday',
+        'time': '1:15 PM - 2:15 PM',
+        'section_id': 'LLS55803MEET-2021-1',
+        'status_enrolled': 'active',
+        'avail_seats': 69,
+        'zoom_id': '00542469756',
+      },
+      {
+        'course_name': 'English Language Arts 1',
+        'school_name': 'Bridgeway 2',
+        'teacher': 'Cortney Bowen',
+        'teacher_assistant': 'Ashely Rose',
+        'grade_level': 'MS',
+        'start_date': '04/01/2021',
+        'end_date': '04/01/2021',
+        'section_name': 'CH-Language Arts 8008',
+        'day': 'Wednesday',
+        'time': '1:15 PM - 2:15 PM',
+        'section_id': 'LLS55803MEET-2021-1',
+        'status_enrolled': 'active',
+        'avail_seats': 69,
+        'zoom_id': '00542469756',
+      },
+      {
+        'course_name': 'English Language Arts 1',
+        'school_name': 'Bridgeway 3',
+        'teacher': 'Cortney Bowen',
+        'teacher_assistant': 'Ashely Rose',
+        'grade_level': 'MS',
+        'start_date': '04/01/2021',
+        'end_date': '04/01/2021',
+        'section_name': 'CH-Language Arts 8008',
+        'day': 'Wednesday',
+        'time': '1:15 PM - 2:15 PM',
+        'section_id': 'LLS55803MEET-2021-1',
+        'status_enrolled': 'active',
+        'avail_seats': 69,
+        'zoom_id': '00542469756',
+      },
+      {
+        'course_name': 'English Language Arts 1',
+        'school_name': 'Bridgeway 2',
+        'teacher': 'Cortney Bowen',
+        'teacher_assistant': 'Ashely Rose',
+        'grade_level': 'MS',
+        'start_date': '04/01/2021',
+        'end_date': '04/01/2021',
+        'section_name': 'CH-Language Arts 8008',
+        'day': 'Wednesday',
+        'time': '1:15 PM - 2:15 PM',
+        'section_id': 'LLS55803MEET-2021-1',
+        'status_enrolled': 'active',
+        'avail_seats': 69,
         'zoom_id': '00542469756',
       },
       {
@@ -89,7 +164,70 @@ var DtModuleCourses = (function () {
         'section_id': 'LLS55803MEET-2021-1',
         'status_enrolled': 'active',
         'avail_seats': 69,
-        'total_seats': 69,
+        'zoom_id': '00542469756',
+      },
+      {
+        'course_name': 'English Language Arts 2',
+        'school_name': 'Bridgeway 2',
+        'teacher': 'Cortney Bowen',
+        'teacher_assistant': 'Ashely Rose',
+        'grade_level': 'MS',
+        'start_date': '04/01/2021',
+        'end_date': '04/01/2021',
+        'section_name': 'CH-Language Arts 8008',
+        'day': 'Wednesday',
+        'time': '1:15 PM - 2:15 PM',
+        'section_id': 'LLS55803MEET-2021-1',
+        'status_enrolled': 'active',
+        'avail_seats': 69,
+        'zoom_id': '00542469756',
+      },
+      {
+        'course_name': 'English Language Arts 2',
+        'school_name': 'Bridgeway 2',
+        'teacher': 'Cortney Bowen',
+        'teacher_assistant': 'Ashely Rose',
+        'grade_level': 'MS',
+        'start_date': '04/01/2021',
+        'end_date': '04/01/2021',
+        'section_name': 'CH-Language Arts 8008',
+        'day': 'Wednesday',
+        'time': '1:15 PM - 2:15 PM',
+        'section_id': 'LLS55803MEET-2021-1',
+        'status_enrolled': 'active',
+        'avail_seats': 69,
+        'zoom_id': '00542469756',
+      },
+      {
+        'course_name': 'English Language Arts 2',
+        'school_name': 'Bridgeway 2',
+        'teacher': 'Cortney Bowen',
+        'teacher_assistant': 'Ashely Rose',
+        'grade_level': 'MS',
+        'start_date': '04/01/2021',
+        'end_date': '04/01/2021',
+        'section_name': 'CH-Language Arts 8008',
+        'day': 'Wednesday',
+        'time': '1:15 PM - 2:15 PM',
+        'section_id': 'LLS55803MEET-2021-1',
+        'status_enrolled': 'active',
+        'avail_seats': 69,
+        'zoom_id': '00542469756',
+      },
+      {
+        'course_name': 'English Language Arts 2',
+        'school_name': 'Bridgeway 2',
+        'teacher': 'Cortney Bowen',
+        'teacher_assistant': 'Ashely Rose',
+        'grade_level': 'MS',
+        'start_date': '04/01/2021',
+        'end_date': '04/01/2021',
+        'section_name': 'CH-Language Arts 8008',
+        'day': 'Wednesday',
+        'time': '1:15 PM - 2:15 PM',
+        'section_id': 'LLS55803MEET-2021-1',
+        'status_enrolled': 'active',
+        'avail_seats': 69,
         'zoom_id': '00542469756',
       },
     ]
@@ -121,6 +259,7 @@ var DtModuleCourses = (function () {
         'data': 'teacher',
         'className': 'dt-body-center',
         'targets': 2,
+        'type': 'hidden'
       },
       {
         'title': 'Teacher Assistant',
@@ -128,6 +267,7 @@ var DtModuleCourses = (function () {
         'data': 'teacher_assistant',
         'className': 'dt-body-center',
         'targets': 3,
+        'type': 'hidden'
       },
       {
         'title': 'Grade Level',
@@ -202,19 +342,11 @@ var DtModuleCourses = (function () {
         'type': 'hidden'
       },
       {
-        'title': 'Total Seats',
-        'name': 'total_seats',
-        'data': 'total_seats',
-        'className': 'dt-body-center',
-        'targets': 13,
-        'type': 'hidden'
-      },
-      {
         'title': 'Zoom ID',
         'name': 'zoom_id',
         'data': 'zoom_id',
         'className': 'dt-body-center',
-        'targets': 14,
+        'targets': 13,
       },
     ],
     select: {
@@ -223,14 +355,14 @@ var DtModuleCourses = (function () {
     },
     altEditor: true,
     buttons: [],
-    "createdRow": function( row, data, dataIndex){
+    'createdRow': function( row, data, dataIndex){
       
     },
     'rowCallback': function( row, data ) {
     },
     'initComplete': function (settings, json) {
       var $toolbar = $('#course-sections_wrapper div.toolbar');
-      $('#course-sections_wrapper').prepend('<div class="group-by">Group By <input id="course" name="group" type="radio"><label for="course">Course</label><input id="school" type="radio" name="group"><label for="school">School</label><input id="teacher" type="radio" name="group"><label for="teacher">Teacher</label></div>');
+      $('#course-sections_wrapper').prepend('<div class="group-by">Group By <input id="course" name="group" type="radio" value="0" checked><label for="course">Course</label><input id="school" type="radio" name="group" value="1"><label for="school">School</label><input id="teacher" type="radio" name="group" value="2"><label for="teacher">Teacher</label></div>');
       
       $toolbar.after('<select class="mr-1"><option>Term</option></select>');
       $toolbar.after('<select class="mr-1"><option>Scheldue</option></select>');
@@ -238,6 +370,10 @@ var DtModuleCourses = (function () {
       $toolbar.after('<select class="mr-1"><option>W/TA</option></select>');
       $toolbar.after('<select class="mr-1"><option>All Schools</option></select>');
       $toolbar.after('<select class="mr-1"><option>2021-2022</option></select>');
+    },
+    'drawCallback': function ( settings ) {
+      var api = this.api();
+      groupRows(api);
     }
   }
 
@@ -248,26 +384,63 @@ var DtModuleCourses = (function () {
   function initDT() {
     var table = DOM.$dt.DataTable(dtConfOnboaardingStudents);
     
-     // Edit
-     $(document).on('click', "[id^='course-sections'] tbody ", 'tr', function () {
-      var tableID = $(this).closest('table').attr('id');    // id of the table
+    // Edit
+    $(document).on('click', "[id^='course-sections'] tbody tr", function () {
+      console.log($(this))
+      if ($(this).hasClass('group')) {
+        return false;
+      }
+      
+    
+      var tableID = $(this).closest('table').attr('id');
       var that = $( '#'+tableID )[0].altEditor;
       that._openEditModal();
-      $('#altEditor-edit-form-' + that.random_id)
-                  .off('submit')
-                  .on('submit', function (e) {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      that._editRowData();
-                  });
+      var $modal = $('#altEditor-edit-form-' + that.random_id);
+      $modal.off('submit')
+             .on('submit', function (e) {
+                e.preventDefault();
+                  e.stopPropagation();
+                  that._editRowData();
+              });
+
+      
+      $('#editRowBtn').text('Update');
+
+      var status = $(this).find('td').eq(11).text();
+      $modal.find('.modal-body').append('<div class="mb-3"><label>Teacher:</label><select class="form-control" name="teacher"><option value="teacher1">Teacher 1</option><option value="teacher2">Teacher2</option></select></div>');
+      $modal.find('.modal-body').append('<div class="mb-3"><label>Teacher Assistent:</label><select class="form-control" name="teacher_assistent"><option value="teacher_assisten1">Teacher Assistent 1</option><option value="teacher_assisten2">Teacher2</option></select></div>');
+      $modal.find('.modal-body').append('<div class="mb-3"><label>Status:</label><select class="form-control" name="status"><option value="active">Active</option><option value="inactive">Inactive</option></select></div>');
+      
+      $modal.find('[name="status"]').val(status);
+    });
+
+    //Grouping
+    $(document).on('change', '[name="group"]', function() {
+      groupColumn = $('[name="group"]:checked').val();
+        groupRows(table);
+    });
+
+    // Update
+    $(document).on('click', "[id^='editRowBtn']", 'tr', function () {
+      // add ajax call to update db
     });
   }
 
-  // Update
-  $(document).on('click', "[id^='editRowBtn'] ", 'tr', function () {
-    // add ajax call to update db
-  });
+  
+  function groupRows(api) {
+    DOM.$dt.find('.group').remove();
+    var rows = api.rows( {page:'current'} ).nodes();
+    var last=null;
+    api.column(groupColumn, {page:'current'} ).data().each( function ( group, i ) {
+        if ( last !== group ) {
+            $(rows).eq( i ).before(
+                '<tr class="group"><td colspan="14">'+group+'</td></tr>'
+            );
 
+            last = group;
+        }
+    } );
+  }
 
   function init() {
     cacheDom();
