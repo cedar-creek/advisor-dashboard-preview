@@ -4,6 +4,28 @@ var DtModuleCourses = (function () {
   var DOM = {};
   var groupColumn = 0;
 
+  const popupScheduleHTML = `
+  <div class="schedule-popup">
+      <form>
+        <div class="row border-b1">
+          <div class="col-9"><input class="form-control" type="text" value="Schedule ABC"></div>
+          <div class="col-3"><select class="form-control"><option>Change Status</option></select></div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="schedule-options-header"><i class="fa fa-calendar-o" aria-hidden="true"></i> Schedule Options</div>
+            <div class="schedule-rows">
+              <div class="schedule-row row">
+                <divc class="schedule-label col-4">School</div>
+                <div class="schedule-input col-8"><select><option>Select an Option</option></select></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+  </div>
+  `;
+
   var dataSet = {
     'data': [
       {
@@ -92,8 +114,8 @@ var DtModuleCourses = (function () {
         'teacher': 'Cortney Bowen',
         'teacher_assistant': 'Ashely Rose',
         'grade_level': 'MS',
-        'start_date': '04/01/2021',
-        'end_date': '04/01/2021',
+        'start_date': '041',
+        'end_date': '04/01/202/01/2021',
         'section_name': 'CH-Language Arts 8008',
         'day': 'Wednesday',
         'time': '1:15 PM - 2:15 PM',
@@ -232,6 +254,32 @@ var DtModuleCourses = (function () {
       },
     ]
   };
+
+  var dataSetSchedules = {
+    'data': [
+      {
+        'schedule_name': 'Schedule A',
+        'school_name': 'Bridgeway',
+        'year': '2021-2022',
+        'charter': 'Yes',
+        'number_of_sections': 5,
+      },
+      {
+        'schedule_name': 'Schedule B',
+        'school_name': 'Bridgeway',
+        'year': '2021-2022',
+        'charter': 'Yes',
+        'number_of_sections': 5,
+      },
+      {
+        'schedule_name': 'Schedule C',
+        'school_name': 'Bridgeway',
+        'year': '2021-2022',
+        'charter': 'Yes',
+        'number_of_sections': 5,
+      },
+    ]
+  }
 
   var dtConfOnboaardingStudents = {
     'data': dataSet.data,
@@ -380,76 +428,138 @@ var DtModuleCourses = (function () {
     }
   }
 
+
+  var dtConfSchedules = {
+    'data': dataSetSchedules.data,
+    'dom': 'l<"toolbar">frtip',
+    'responsive': true,
+    'columnDefs': [
+      {
+        'title': 'Schedule Name',
+        'name': 'schedule_name',
+        'data': 'schedule_name',
+        'targets': 0,
+      },
+      {
+        'title': 'School Name',
+        'name': 'school_name',
+        'data': 'school_name',
+        'targets': 1,
+      },
+      {
+        'title': 'Year',
+        'name': 'year',
+        'data': 'year',
+        'targets': 2,
+      },
+      {
+        'title': 'Charter', 
+        'name': 'charter',  
+        'data': 'charter',  
+        'targets': 3, 
+      },
+      {
+        'title': '# of Sections',
+        'name': 'number_of_sections',
+        'data': 'number_of_sections',
+        'targets': 4,
+      },
+    ],
+    'initComplete': function (settings, json) {
+      var $toolbar = $('#schedules_wrapper div.toolbar');
+      
+      $toolbar.after('<a href="#" class="add-schedule-js float-right mr-1"></i>Add new schedule <i class="fa fa-plus mr-1" aria-hidden="true"></a>');
+      $toolbar.after('<select class="mr-1"><option>All Schools</option></select>');
+      $toolbar.after('<select class="mr-1"><option>2021-2022</option></select>');
+
+    },
+  }
+
   function cacheDom() {
-    DOM.$dt = $('#course-sections');
+    DOM.$dtCourse = $('#course-sections');
+    DOM.$dtSchedules = $('#schedules');
+
   }
 
   function initDT() {
-    var table = DOM.$dt.DataTable(dtConfOnboaardingStudents);
+    if (DOM.$dtSchedules.length > 0) {
+      var tableSchedules = DOM.$dtSchedules.DataTable(dtConfSchedules);
+
+      // add record
+      $(document).on('click', '.add-schedule-js', 'tr', function (e) {
+        e.preventDefault();
+        $.fancybox.open(popupScheduleHTML);
+      });
+    }
+
+    if (DOM.$dtCourse.length > 0) {
+      var table = DOM.$dtCourse.DataTable(dtConfOnboaardingStudents);
     
-    // Edit
-    $(document).on('click', "[id^='course-sections'] tbody tr", function () {
-      if ($(this).hasClass('group')) {
-        return false;
-      }
+      // Edit
+      $(document).on('click', "[id^='course-sections'] tbody tr", function () {
+        if ($(this).hasClass('group')) {
+          return false;
+        }
+        
       
-    
-      var tableID = $(this).closest('table').attr('id');
-      var that = $( '#'+tableID )[0].altEditor;
-      that._openEditModal();
-      var $modal = $('#altEditor-edit-form-' + that.random_id);
-      $modal.off('submit')
-             .on('submit', function (e) {
-                e.preventDefault();
-                  e.stopPropagation();
-                  that._editRowData();
-              });
-
-      
-      $('#editRowBtn').text('Update');
-
-      var status = $(this).find('td').eq(11).text();
-      $modal.find('.modal-body').append('<div class="mb-3"><label>Teacher:</label><select class="form-control" name="teacher"><option value="teacher1">Teacher 1</option><option value="teacher2">Teacher2</option></select></div>');
-      $modal.find('.modal-body').append('<div class="mb-3"><label>Teacher Assistent:</label><select class="form-control" name="teacher_assistent"><option value="teacher_assisten1">Teacher Assistent 1</option><option value="teacher_assisten2">Teacher2</option></select></div>');
-      $modal.find('.modal-body').append('<div class="mb-3"><label>Status:</label><select class="form-control" name="status"><option value="active">Active</option><option value="inactive">Inactive</option></select></div>');
-      
-      $modal.find('[name="status"]').val(status);
-    });
-
-    //Grouping
-    $(document).on('change', '[name="group"]', function() {
-      groupColumn = $('[name="group"]:checked').val();
-        groupRows(table);
-        var colOrder = [0,1,2,3,4,5,6,7,8,9,10,11,12,13];
-        colOrder = colOrder.filter(val => val !== parseInt(groupColumn));
-        colOrder.unshift(parseInt(groupColumn));
-        table.colReorder.order(colOrder, true);
-        addSortingMsg();
-    });
-
-    // Order by the grouping
-    DOM.$dt.on( 'click', 'tbody tr.group', function () {
-      var currentOrder = table.order()[0];
-      if ( currentOrder[0] === groupColumn && currentOrder[1] === 'asc' ) {
-          table.order( [ groupColumn, 'desc' ] ).draw();
-      }
-      else {
-          table.order( [ groupColumn, 'asc' ] ).draw();
-      }
-  } );
-
-    // Update
-    $(document).on('click', "[id^='editRowBtn']", 'tr', function () {
-      // add ajax call to update db
-    });
-  }
+        var tableID = $(this).closest('table').attr('id');
+        var that = $( '#'+tableID )[0].altEditor;
+        that._openEditModal();
+        var $modal = $('#altEditor-edit-form-' + that.random_id);
+        $modal.off('submit')
+               .on('submit', function (e) {
+                  e.preventDefault();
+                    e.stopPropagation();
+                    that._editRowData();
+                });
+  
+        
+        $('#editRowBtn').text('Update');
+  
+        var status = $(this).find('td').eq(11).text();
+        $modal.find('.modal-body').append('<div class="mb-3"><label>Teacher:</label><select class="form-control" name="teacher"><option value="teacher1">Teacher 1</option><option value="teacher2">Teacher2</option></select></div>');
+        $modal.find('.modal-body').append('<div class="mb-3"><label>Teacher Assistent:</label><select class="form-control" name="teacher_assistent"><option value="teacher_assisten1">Teacher Assistent 1</option><option value="teacher_assisten2">Teacher2</option></select></div>');
+        $modal.find('.modal-body').append('<div class="mb-3"><label>Status:</label><select class="form-control" name="status"><option value="active">Active</option><option value="inactive">Inactive</option></select></div>');
+        
+        $modal.find('[name="status"]').val(status);
+      });
+  
+      //Grouping
+      $(document).on('change', '[name="group"]', function() {
+        groupColumn = $('[name="group"]:checked').val();
+          groupRows(table);
+          var colOrder = [0,1,2,3,4,5,6,7,8,9,10,11,12,13];
+          colOrder = colOrder.filter(val => val !== parseInt(groupColumn));
+          colOrder.unshift(parseInt(groupColumn));
+          table.colReorder.order(colOrder, true);
+          addSortingMsg();
+      });
+  
+      // Order by the grouping
+      DOM.$dtCourse.on( 'click', 'tbody tr.group', function () {
+        var currentOrder = table.order()[0];
+        if ( currentOrder[0] === groupColumn && currentOrder[1] === 'asc' ) {
+            table.order( [ groupColumn, 'desc' ] ).draw();
+        }
+        else {
+            table.order( [ groupColumn, 'asc' ] ).draw();
+        }
+    } );
+  
+      // Update
+      $(document).on('click', "[id^='editRowBtn']", 'tr', function () {
+        // add ajax call to update db
+      });
+    }
+    }
+   
 
   function addSortingMsg() {
     $('#course-sections_wrapper tr.group td').append('<small class="font-weight-normal"> (Click to sort by group)</small>');
   }
   
   function groupRows(api) {
-    DOM.$dt.find('.group').remove();
+    DOM.$dtCourse.find('.group').remove();
     var rows = api.rows( {page:'current'} ).nodes();
     var last=null;
     api.column(groupColumn, {page:'current'} ).data().each( function ( group, i ) {
