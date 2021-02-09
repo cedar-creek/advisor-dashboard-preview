@@ -14,11 +14,99 @@ var DtModuleCourses = (function () {
         <div class="row">
           <div class="col-12">
             <div class="schedule-options-header"><i class="fa fa-calendar-o" aria-hidden="true"></i> Schedule Options</div>
-            <div class="schedule-rows">
-              <div class="schedule-row row">
-                <divc class="schedule-label col-4">School</div>
-                <div class="schedule-input col-8"><select><option>Select an Option</option></select></div>
-              </div>
+            <table class="table-popup table w-100">
+              <tbody>
+                <tr>
+                  <td>School</td>
+                  <td><select class="form-control"><option>Select an Option</option></select></td>
+                </tr>
+                <tr>
+                  <td>Academic Year</td>
+                  <td><select class="form-control"><option>Select an Option</option></select></td>
+                </tr>
+                <tr>
+                  <td>In Charter</td>
+                  <td><select class="form-control"><option>Select an Option</option></select></td>
+                </tr>
+                <tr>
+                  <td>Default Max Enrollment Limit</td>
+                  <td><select class="form-control"><option>Select an Option</option></select></td>
+                </tr>
+                <tr>
+                  <td>Default Min Enrollment Limit</td>
+                  <td><select class="form-control"><option>Select an Option</option></select></td>
+                </tr>
+                <tr>
+                  <td>Display Time Zone</td>
+                  <td>
+                    <div class="custom-control custom-checkbox d-inline-block">
+                      <input type="checkbox" class="custom-control-input" id="customCheck1">
+                      <label class="custom-control-label" for="customCheck1">PST</label>
+                    </div>
+                    <div class="custom-control custom-checkbox d-inline-block">
+                      <input type="checkbox" class="custom-control-input" id="customCheck1">
+                      <label class="custom-control-label" for="customCheck1">MST</label>
+                    </div>
+                    <div class="custom-control custom-checkbox d-inline-block">
+                      <input type="checkbox" class="custom-control-input" id="customCheck1">
+                      <label class="custom-control-label" for="customCheck1">CST</label>
+                    </div>
+                    <div class="custom-control custom-checkbox d-inline-block">
+                      <input type="checkbox" class="custom-control-input" id="customCheck1">
+                      <label class="custom-control-label" for="customCheck1">EST</label>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="warning-msg"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> Making chanes on Time Slots will effect the time on all sections.</div>
+            <div class="schedule-options-header"><i class="fa fa-clock" aria-hidden="true"></i> Add Available Time Slots in EST</div>
+            <table class="table-popup time-slots table w-100">
+              <tbody>
+                <tr>
+                  <td>Time Slot #1</td>
+                  <td><input type="time"> - <input type="time"> <span class="font-weight-normal">Used by 12 sections</span></td>
+                </tr>
+                <tr>
+                  <td>Time Slot #2</td>
+                  <td><input type="time"> - <input type="time"> <span class="font-weight-normal">Used by 12 sections</span></td>
+                </tr>
+                <tr>
+                  <td>Time Slot #3</td>
+                  <td><input type="time"> - <input type="time"> <span class="font-weight-normal">Used by 12 sections</span></td>
+                </tr>
+                <tr>
+                  <td>Time Slot #4</td>
+                  <td><input type="time"> - <input type="time"> <span class="font-weight-normal">Used by 12 sections</span></td>
+                </tr>
+                <tr>
+                  <td>Time Slot #5</td>
+                  <td><input type="time"> - <input type="time"> <span class="font-weight-normal">Used by 12 sections</span></td>
+                </tr>
+                <tr>
+                  <td>Time Slot #6</td>
+                  <td><input type="time"> - <input type="time"> <span class="font-weight-normal">Used by 12 sections</span></td>
+                </tr>
+                <tr>
+                  <td>Time Slot #7</td>
+                  <td><input type="time"> - <input type="time"> <span class="font-weight-normal">Used by 12 sections</span></td>
+                </tr>
+                <tr>
+                  <td>Time Slot #8</td>
+                  <td><input type="time"> - <input type="time"> <span class="font-weight-normal">Used by 12 sections</span></td>
+                </tr>
+                <tr>
+                  <td>Time Slot #9</td>
+                  <td><input type="time"> - <input type="time"> <span class="font-weight-normal">Used by 12 sections</span></td>
+                </tr>
+                <tr>
+                  <td>Time Slot #10</td>
+                  <td><input type="time"> - <input type="time"> <span class="font-weight-normal">Used by 12 sections</span></td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="popup-footer">
+              <a href="#" class="save-schedule">Save & Close</a>
             </div>
           </div>
         </div>
@@ -488,6 +576,10 @@ var DtModuleCourses = (function () {
       // add record
       $(document).on('click', '.add-schedule-js', 'tr', function (e) {
         e.preventDefault();
+        $.fancybox.open(popupScheduleHTML);
+      });
+
+      DOM.$dtSchedules.on( 'click', 'tbody tr', function () {
         $.fancybox.open(popupScheduleHTML);
       });
     }
